@@ -1,0 +1,60 @@
+.tri-account-detail {
+    display: flex;
+
+    .icon {
+        height: 60px;
+        width: 60px;
+        margin-right: 10px;
+        border-radius: 4px;
+        box-shadow: $shadow-basic;
+    }
+
+    .name {
+        margin: 0px 0px 4px 0px;
+    }
+
+    .role {
+        margin: 0px;
+    }
+}
+
+.tri-comment-container {
+    padding: 12px;
+    background-color: $offwhite;
+
+    .light {
+        margin: 3px 0px;
+        color: $grey;
+        font-size: 0.9em;
+    }
+
+    
+    .comment-actions {
+        margin-bottom: 5px;
+
+        .link-button {
+            margin-right: 10px;
+        }
+    }
+
+    .reply {
+        textarea {
+            max-width: 100%;
+            min-width: 100%;
+        }
+    }
+
+    .comment-children {
+        border-left: 1px solid $light-grey;
+    }
+}
+
+.link-button {
+    display: inline-block;
+    cursor: pointer;
+    color: $link-button-color;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
