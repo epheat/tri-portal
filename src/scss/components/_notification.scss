@@ -1,0 +1,23 @@
+.tri-notification-container {
+
+    border-radius: 4px;
+    box-shadow: $notification-shadow;
+    margin-top: 10px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+
+    .icon {
+        padding: 0px 10px 0px 5px;
+    }
+    
+    &.info {
+        background-color: $notification-info;
+    }
+    &.warn {
+        background-color: $notification-warn;
+    }
+    &.danger {
+        background-color: $notification-danger;
+    }
+}

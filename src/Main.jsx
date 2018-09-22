@@ -7,14 +7,13 @@ See the License for the specific language governing permissions and limitations 
 */
 
 import React, { Component } from 'react';
-import Home from './Home';
-import Menu from './API/Menu';
-import Orders from './API/Order';
+import Home from './pages/Home';
+import MembersPage from './pages/MembersPage';
+import ForumPage from './pages/ForumPage';
 import AppRoute from './index';
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
-import './css/general.css';
 import awsmobile from './aws-exports';
-import {Auth} from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 
 import Navbar from './components/Navbar';
 
@@ -22,6 +21,12 @@ export default class Main extends Component {
 
     constructor(props)  {
         super(props);
+        this.state = {
+            
+        }
+        
+        // bind signOut since we're passing it as a prop to Navbar
+        this.signOut = this.signOut.bind(this);
     }
 
     signOut = async(e) => {
@@ -34,24 +39,24 @@ export default class Main extends Component {
             .catch(err => console.log(err));    
     }
 
+    componentWillMount() {
+        
+    }
+
     render() {
         return (
             <div>
+                {console.log(this.props)}
                 { this.props.authState == 'signedIn' ?
                     (<BrowserRouter>
                         <div>
-                            <Navbar fixed={false} />
-           
-                            <div className="content">
-                                <h1>Triangle Portal</h1>
-                                <h4>Welcome to the triangle online portal!</h4>
-                            </div>
+                            <Navbar fixed={false} user={this.props.authData} signOut={this.signOut} />
+                            {/* a Switch will render exactly 1 of its child routes based on current url */}
                             <Switch>
                                 <Route exact path="/" component={Home} />
-                                <Route exact path="/main/home" component={Home} />
-                                <Route exact path="/main/menus/:id" component={Menu} />
-                                <Route exact path="/main/menus" component={Menu} />
-                                <Route exact path="/main/orders" component={Orders} />
+                                <Route exact path="/" component={Home} />
+                                <Route exact path="/members" component={MembersPage} />
+                                <Route exact path="/forum" component={ForumPage} />
                             </Switch>
                         </div>
                     </BrowserRouter>) : null

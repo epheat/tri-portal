@@ -9,7 +9,7 @@ features:
           sdk-generation-stage-name: Development
         paths:
           /items: !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/ReactSample-20180909161416.zip
+            codeFilename: uploads/ReactSample-20180922142346.zip
             description: 'Handler for calls to resource path : /items/{proxy+}'
             enableCORS: true
             environment:
@@ -17,15 +17,15 @@ features:
               ORDERS_TABLE_NAME: triportal-mobilehub-346463282-bbq_orders
               RESTAURANTS_TABLE_NAME: triportal-mobilehub-346463282-bbq_restaurants
             handler: lambda.handler
-            hashcode: CTRRZp+LWxbcMI7uLCt6TRY1C3Bnis1cHJ/btwhC/+k=
+            hashcode: 0sMQoPo8JScFXvZPUMJE2dQSoX6u/335TjeOaOO2FOA=
             memorySize: '128'
-            modified: '2018-09-09T23:14:49.317+0000'
+            modified: '2018-09-22T21:24:23.572+0000'
             name: ReactSample
             runtime: nodejs6.10
             timeout: '3'
-            version: hR6kGb4FIljhR_g0kkQSttZZF8zR4Mig
+            version: 4NIjsSOwVK7kVkT8aaQcVNI1n2Z4k2ha
           '/items/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/ReactSample-20180909161416.zip
+            codeFilename: uploads/ReactSample-20180922142346.zip
             description: 'Handler for calls to resource path : /items/{proxy+}'
             enableCORS: true
             environment:
@@ -33,13 +33,13 @@ features:
               ORDERS_TABLE_NAME: triportal-mobilehub-346463282-bbq_orders
               RESTAURANTS_TABLE_NAME: triportal-mobilehub-346463282-bbq_restaurants
             handler: lambda.handler
-            hashcode: CTRRZp+LWxbcMI7uLCt6TRY1C3Bnis1cHJ/btwhC/+k=
+            hashcode: 0sMQoPo8JScFXvZPUMJE2dQSoX6u/335TjeOaOO2FOA=
             memorySize: '128'
-            modified: '2018-09-09T23:14:49.317+0000'
+            modified: '2018-09-22T21:24:23.572+0000'
             name: ReactSample
             runtime: nodejs6.10
             timeout: '3'
-            version: yQsWUTnzhRhhEX5MU3S1ml7mAUtO43K8
+            version: LTKsCh3Y2Jeo7QbIlt.Lb90A.x46FERg
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true

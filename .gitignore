@@ -6,5 +6,6 @@ aws-exports.*
 awsmobilejs/.awsmobile/backend-build
 awsmobilejs/\#current-backend-info
 ~awsmobilejs-*/
-build/*
 node_modules/
+.DS_Store
+build/*

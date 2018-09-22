@@ -1,8 +1,16 @@
 $offwhite: #f3e9df;
 $dark-grey: #777777;
 $tri-grey: #5a6770;
+$tri-grey-2: #707e88;
 $grey: #999999;
 $light-grey: #bbbbbb;
 $link-button-color: #222244;
+
+// Notification colors
+$notification-info: rgb(122, 196, 116);
+$notification-warn: rgb(204, 197, 94);
+$notification-danger: rgb(219, 141, 141);
+
+$notification-shadow: 2px 2px 4px $dark-grey;
 
 $shadow-basic: 2px 2px 3px rgba(50, 50, 50, 0.7);

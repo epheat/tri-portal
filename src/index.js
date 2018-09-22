@@ -13,9 +13,8 @@ import { Button, Card, Row, Col, Navbar, NavItem, Icon } from 'react-materialize
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Main from './Main';
 import awsmobile from './aws-exports';
-import Amplify from 'aws-amplify';
+import Amplify, { Auth } from 'aws-amplify';
 import { Authenticator, Greetings } from 'aws-amplify-react';
-import './css/general.css';
 import './scss/tri-portal.scss';
 
 Amplify.configure(awsmobile);
@@ -48,7 +47,7 @@ class App extends Component {
     render() {
         return (
             <Authenticator hide={[Greetings]}>
-                <Main  />
+                <Main />
             </Authenticator>
         );
     }

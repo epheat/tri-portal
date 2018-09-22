@@ -17,7 +17,6 @@ class Comment extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props.comment.account.icon);
         this.state = {
             liked: false,
             writingReply: false,
@@ -41,7 +40,14 @@ class Comment extends React.Component {
     }
 
     cancelReply() {
+        if (this.state.reply) {
+            // launch a confirmation modal "you will lose progress"
+        }
         this.setState({ writingReply: false });
+    }
+
+    submitReply() {
+
     }
 
     render() {
@@ -61,6 +67,7 @@ class Comment extends React.Component {
                     <div className="reply">
                         <textarea rows="6"></textarea>
                         <div className="link-button" onClick={this.cancelReply}>Cancel</div>
+                        <div className="link-button" onClick={this.submitReply}>Submit</div>
                     </div>
                 }
                 <div className="comment-children">
