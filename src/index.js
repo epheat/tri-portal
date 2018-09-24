@@ -8,16 +8,14 @@ See the License for the specific language governing permissions and limitations 
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Redirect, Link, Switch } from 'react-router-dom';
-import { Button, Card, Row, Col, Navbar, NavItem, Icon } from 'react-materialize';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Main from './Main';
-import awsmobile from './aws-exports';
+import awsconfig from './aws-exports';
 import Amplify, { Auth } from 'aws-amplify';
 import { Authenticator, Greetings } from 'aws-amplify-react';
 import './scss/tri-portal.scss';
 
-Amplify.configure(awsmobile);
+Amplify.configure(awsconfig);
 
 require('file-loader?name=[name].[ext]!./index.html');
 require("babel-core/register");

@@ -12,7 +12,6 @@ import MembersPage from './pages/MembersPage';
 import ForumPage from './pages/ForumPage';
 import AppRoute from './index';
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
-import awsmobile from './aws-exports';
 import { Auth } from 'aws-amplify';
 
 import Navbar from './components/Navbar';
@@ -46,7 +45,6 @@ export default class Main extends Component {
     render() {
         return (
             <div>
-                {console.log(this.props)}
                 { this.props.authState == 'signedIn' ?
                     (<BrowserRouter>
                         <div>

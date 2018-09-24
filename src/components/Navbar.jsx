@@ -14,13 +14,13 @@ const Navbar = ({ fixed, user, signOut }) => {
 
                 <ul className="nav-items">
                     <li>
-                        <NavLink to="/">Home</NavLink>
+                        <NavLink exact className="navlink" to="/">Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/members">Members</NavLink>
+                        <NavLink className="navlink" to="/members">Members</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/forum">Forum</NavLink>
+                        <NavLink className="navlink" to="/forum">Forum</NavLink>
                     </li>
                 </ul>
             </div>

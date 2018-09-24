@@ -1,0 +1,8 @@
+body {
+    margin: 0px;
+}
+
+.amplify-container {
+    // override padding 15px on left and right, default from Authenticator component
+    padding: 0px !important;
+}

@@ -1,5 +1,17 @@
 .tri-navbar {
 
+    .navlink {
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        font-family: sans-serif;
+        text-decoration: none;
+
+        &.active {
+            text-decoration: underline;
+        }
+    }
+
     .row-links {
         display: flex;
         height: 50px;
@@ -36,5 +48,10 @@
         flex-direction: row-reverse;
         height: 30px;
         background-color: $tri-grey-2;
+        padding: 0px 10px;
+
+        .greeting {
+            margin-right: 20px;
+        }
     }
 }

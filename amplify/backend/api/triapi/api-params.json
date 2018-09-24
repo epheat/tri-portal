@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/posts",
+            "lambdaFunction": "tripostslambda",
+            "privacy": {
+                "private": true,
+                "auth": "rw"
+            }
+        }
+    ],
+    "resourceName": "triapi",
+    "apiName": "triportal73c3a9ad",
+    "functionArns": [
+        {
+            "lambdaFunction": "tripostslambda"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "triportal-20180923204247-authRole",
+        "unAuthRoleName": "triportal-20180923204247-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "tripostslambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
