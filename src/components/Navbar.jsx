@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import Logo from '../assets/images/TriLogo.png';
+import Logo from '../assets/images/tri.png';
 
 const Navbar = ({ fixed, user, signOut }) => {
     console.log(user);

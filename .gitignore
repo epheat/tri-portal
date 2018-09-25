@@ -2,7 +2,7 @@
 appsync-info.json
 aws-info.json
 project-info.json
-aws-exports.*
+# aws-exports.*
 amplify/\#current-cloud-backend
 node_modules/
 .DS_Store
