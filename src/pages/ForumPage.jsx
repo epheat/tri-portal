@@ -1,6 +1,8 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
+import { API } from 'aws-amplify';
+
 import Comment from '../components/Comment';
 import evanIcon from '../assets/images/icon.jpg';
 
@@ -64,16 +66,26 @@ class ForumPage extends React.Component {
         }
 
         this.getPostList = this.getPostList.bind(this);
+        this.createNewPost = this.createNewPost.bind(this);
+    }
+    
+    // executed when the component lands on the page. Like Vue's 'mounted' function
+    componentDidMount() {
+        this.setState({ postList: this.getPostList() });
     }
 
     getPostList() {
         // TODO: ajax call to get most recent posts
-        // for now, I'll return an array of dummy data
-        return [
-            {
+        // apiName might be triportal73c3a9ad??
+        API.get('triapi', '/posts/abcd').then( response => {
+            console.log(response);
+        }).catch( err => {
+            console.log(err);
+        })
+    }
 
-            }
-        ]
+    createNewPost() {
+        console.log("hi");
     }
 
     render() {
@@ -91,8 +103,9 @@ class ForumPage extends React.Component {
                 <h1>Discussions/Posts</h1>
                     <div className="forum-search-bar">
                         search bar
+                        <button onClick={this.createNewPost}>new post</button>
                     </div>
-                    <Comment comment={ this.state.comment }></Comment>
+                    {/* <Comment comment={ this.state.comment }></Comment> */}
                 </div>
             </CSSTransitionGroup>
         )
