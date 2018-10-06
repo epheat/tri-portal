@@ -48,17 +48,22 @@ const convertUrlType = (param, type) => {
   }
 }
 
-app.get('/posts/foo', (req, res) => {
-  console.log(res.data);
-  req.json("hello world!");
+/********************************
+ * HTTP Get method for ALL posts *
+ ********************************/
+app.get(path, (req, res) => {
+  let queryParams = {
+    TableName: tableName,
+  }
+
+  dynamodb.scan(queryParams, (err, data) => {
+    if (err) {
+      res.json({error: 'Could not scan triposts table: ' + err});
+    } else {
+      res.json(data.Items);
+    }
+  })
 })
-
-// app.get(path, (req, res) => {
-//   let queryParams = {
-//     TableName: tableName,
-
-//   }
-// })
 
 /********************************
  * HTTP Get method for list objects *

@@ -3,66 +3,18 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import { API } from 'aws-amplify';
 
+import loadingIcon from '../assets/loading.gif';
 import Comment from '../components/Comment';
 import evanIcon from '../assets/images/icon.jpg';
+import ForumPost from '../components/ForumPost';
 
 class ForumPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            postList: null,
-            comment: {
-                account: {
-                    icon: evanIcon,
-                    name: 'Evan Heaton',
-                    role: 'Admin',
-                },
-                content: "comment comment comment, comment comment comment",
-                timePosted: 0,
-                children: [
-                    {
-                        account: {
-                            icon: evanIcon,
-                            name: 'Evan Heaton',
-                            role: 'Admin',
-                        },
-                        content: "comment comment comment, comment comment comment",
-                        timePosted: 1231233413,
-                        children: [
-                            {
-                                account: {
-                                    icon: evanIcon,
-                                    name: 'Evan Heaton',
-                                    role: 'Admin',
-                                },
-                                content: "comment comment comment, comment comment comment",
-                                timePosted: 1231233413,
-                            }
-                        ]
-                    },
-                    {
-                        account: {
-                            icon: evanIcon,
-                            name: 'Evan Heaton',
-                            role: 'Admin',
-                        },
-                        content: "comment comment comment, comment comment comment",
-                        timePosted: 1231233413,
-                        children: [
-                            {
-                                account: {
-                                    icon: evanIcon,
-                                    name: 'Evan Heaton',
-                                    role: 'Admin',
-                                },
-                                content: "comment comment comment, comment comment comment",
-                                timePosted: 1231233413,
-                            }
-                        ]
-                    },
-                ]
-            }
+            loading: true,
+            postList: [],
         }
 
         this.getPostList = this.getPostList.bind(this);
@@ -71,14 +23,14 @@ class ForumPage extends React.Component {
     
     // executed when the component lands on the page. Like Vue's 'mounted' function
     componentDidMount() {
-        this.setState({ postList: this.getPostList() });
+        this.getPostList();
     }
 
     getPostList() {
         // TODO: ajax call to get most recent posts
         // apiName might be triportal73c3a9ad??
-        API.get('triapi', '/posts/abcd').then( response => {
-            console.log(response);
+        API.get('triapi', '/posts').then( response => {
+            this.setState({ loading: false, postList: response });
         }).catch( err => {
             console.log(err);
         })
@@ -105,7 +57,14 @@ class ForumPage extends React.Component {
                         search bar
                         <button onClick={this.createNewPost}>new post</button>
                     </div>
-                    {/* <Comment comment={ this.state.comment }></Comment> */}
+                    <div className="forum-posts">
+                    { this.state.loading && <img className="loading-icon" src={loadingIcon} />}
+                    {
+                        this.state.postList.map( post => 
+                            <ForumPost key={post.post_id} post={post}></ForumPost>
+                        )
+                    }
+                    </div>
                 </div>
             </CSSTransitionGroup>
         )

@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import Logo from '../assets/images/tri.png';
 
 const Navbar = ({ fixed, user, signOut }) => {
-    console.log(user);
     return (
         <div className="tri-navbar">
             <div className="row-links">
