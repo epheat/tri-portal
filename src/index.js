@@ -29,9 +29,9 @@ class App extends Component {
 
     handleWindowClose = async (e) => {
         e.preventDefault();
-        Auth.signOut()
-            .then()
-            .catch(err => console.log(err))
+        // Auth.signOut()
+        //     .then()
+        //     .catch(err => console.log(err))
     }
 
     componentWillMount() {

@@ -7,3 +7,4 @@ amplify/\#current-cloud-backend
 node_modules/
 .DS_Store
 build/*
+dist/

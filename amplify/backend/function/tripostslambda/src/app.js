@@ -14,7 +14,7 @@ AWS.config.update({ region: process.env.TABLE_REGION });
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-let tableName = "postsdynamo";
+let tableName = "triposts";
 
 const userIdPresent = false; // TODO: update in case is required to use that definition
 const partitionKeyName = "post_id";
@@ -47,6 +47,18 @@ const convertUrlType = (param, type) => {
       return param;
   }
 }
+
+app.get('/posts/foo', (req, res) => {
+  console.log(res.data);
+  req.json("hello world!");
+})
+
+// app.get(path, (req, res) => {
+//   let queryParams = {
+//     TableName: tableName,
+
+//   }
+// })
 
 /********************************
  * HTTP Get method for list objects *

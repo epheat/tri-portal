@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/auth/cognitoe141c6f8-cloudformation-template.yml",
 				"logicalId": "authcognitoe141c6f8"
 			},
-			"lastPushTimeStamp": "2018-09-24T04:05:35.867Z",
+			"lastPushTimeStamp": "2018-10-06T19:25:42.086Z",
 			"output": {
 				"AppClientSecret": "1k70ghf7lvd2vrs7cufr0f51u6ii3f95s0qs1otupj8iv0bf9vvb",
 				"UserPoolId": "us-east-1_49MYElDIG",
@@ -40,7 +40,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/storage/postsdynamo-cloudformation-template.json",
 				"logicalId": "storagepostsdynamo"
 			},
-			"lastPushTimeStamp": "2018-09-24T04:05:35.867Z",
+			"lastPushTimeStamp": "2018-10-06T19:25:42.087Z",
 			"output": {
 				"PartitionKeyName": "post_id",
 				"Region": "us-east-1",
@@ -67,19 +67,19 @@
 				}
 			],
 			"lastBuildTimeStamp": "2018-09-24T04:02:44.889Z",
-			"lastPackageTimeStamp": "2018-09-24T04:02:47.845Z",
-			"distZipFilename": "tripostslambda-1537761764-latest-build.zip",
+			"lastPackageTimeStamp": "2018-10-06T19:24:22.840Z",
+			"distZipFilename": "tripostslambda-1538853860-latest-build.zip",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/function/tripostslambda-cloudformation-template.json",
 				"logicalId": "functiontripostslambda"
 			},
-			"lastPushTimeStamp": "2018-09-24T04:05:35.867Z",
+			"lastPushTimeStamp": "2018-10-06T19:25:42.091Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:854299661720:function:tripostslambda",
 				"Name": "tripostslambda"
 			},
-			"lastPushDirHash": "5BmqcbxGm9wukm4Tdx/HjYA7C/Y="
+			"lastPushDirHash": "yfcYvLp8FY94ZUR/obxb0Lo+qxU="
 		}
 	},
 	"api": {
@@ -100,7 +100,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/api/triapi-cloudformation-template.json",
 				"logicalId": "apitriapi"
 			},
-			"lastPushTimeStamp": "2018-09-24T04:05:35.867Z",
+			"lastPushTimeStamp": "2018-10-06T19:25:42.090Z",
 			"output": {
 				"ApiName": "triapi",
 				"RootUrl": "https://v04piwioyl.execute-api.us-east-1.amazonaws.com/Prod"
@@ -116,7 +116,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/hosting/template.json",
 				"logicalId": "hostingS3AndCloudFront"
 			},
-			"lastPushTimeStamp": "2018-09-24T04:05:35.867Z",
+			"lastPushTimeStamp": "2018-10-06T19:25:42.090Z",
 			"output": {
 				"S3BucketSecureURL": "https://triportal-20180923210204--hostingbucket.s3.amazonaws.com",
 				"WebsiteURL": "http://triportal-20180923210204--hostingbucket.s3-website-us-east-1.amazonaws.com",

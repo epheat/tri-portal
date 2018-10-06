@@ -27,7 +27,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "triportal-20180923204247-deployment",
-					"S3Key": "amplify-builds/tripostslambda-1537761764-latest-build.zip"
+					"S3Key": "amplify-builds/tripostslambda-1538853860-latest-build.zip"
 				}
 			}
 		},
