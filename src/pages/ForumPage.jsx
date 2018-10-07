@@ -60,6 +60,8 @@ class ForumPage extends React.Component {
                     <div className="forum-posts">
                     { this.state.loading && <img className="loading-icon" src={loadingIcon} />}
                     {
+                        // for each post, in the postList, create a ForumPost component.
+                        // each child in a .map() should have a unique 'key' property
                         this.state.postList.map( post => 
                             <ForumPost key={post.post_id} post={post}></ForumPost>
                         )
