@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import Home from './pages/Home';
 import MembersPage from './pages/MembersPage';
 import ForumPage from './pages/ForumPage';
+import ForumNewPost from './pages/ForumNewPost';
 import AppRoute from './index';
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
@@ -54,6 +55,7 @@ export default class Main extends Component {
                                 <Route exact path="/" component={Home} />
                                 <Route exact path="/members" component={MembersPage} />
                                 <Route exact path="/forum" component={ForumPage} />
+                                <Route exact path="/forum/new" component={ForumNewPost} />
                             </Switch>
                         </div>
                     </BrowserRouter>) : null

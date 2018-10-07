@@ -1,0 +1,14 @@
+.tri-form-input-container {
+    & + .tri-form-input-container {
+        margin-top: 5px;
+    }
+
+    display: flex;
+
+    .tri-form-label {
+        flex-basis: 80px;
+    }
+    .tri-form-input {
+        flex-grow: 1;
+    }
+}

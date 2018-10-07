@@ -9,6 +9,7 @@ const AWS = require('aws-sdk')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
 var express = require('express')
+const uuidv4 = require('uuid/v4');
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -152,15 +153,17 @@ app.put(path, function(req, res) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
   }
 
+  let postId = uuidv4();
+
   let putItemParams = {
     TableName: tableName,
-    Item: req.body
+    Item: { ...req.body, post_id: postId }
   }
   dynamodb.put(putItemParams, (err, data) => {
     if(err) {
       res.json({error: err, url: req.url, body: req.body});
     } else{
-      res.json({success: 'put call succeed!', url: req.url, data: data})
+      res.json({success: 'put call succeed!', url: req.url, postId: postId, data: data});
     }
   });
 });
@@ -175,15 +178,17 @@ app.post(path, function(req, res) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
   }
 
+  let postId = uuidv4();
+
   let putItemParams = {
     TableName: tableName,
-    Item: req.body
+    Item: { ...req.body, post_id: postId }
   }
   dynamodb.put(putItemParams, (err, data) => {
     if(err) {
       res.json({error: err, url: req.url, body: req.body});
     } else{
-      res.json({success: 'post call succeed!', url: req.url, data: data})
+      res.json({success: 'post call succeed!', url: req.url, postId: postId, data: data})
     }
   });
 });

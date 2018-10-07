@@ -2,6 +2,7 @@ import React from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import { API } from 'aws-amplify';
+import { NavLink } from 'react-router-dom';
 
 import loadingIcon from '../assets/loading.gif';
 import Comment from '../components/Comment';
@@ -27,8 +28,7 @@ class ForumPage extends React.Component {
     }
 
     getPostList() {
-        // TODO: ajax call to get most recent posts
-        // apiName might be triportal73c3a9ad??
+        // get all posts
         API.get('triapi', '/posts').then( response => {
             this.setState({ loading: false, postList: response });
         }).catch( err => {
@@ -55,7 +55,7 @@ class ForumPage extends React.Component {
                 <h1>Discussions/Posts</h1>
                     <div className="forum-search-bar">
                         search bar
-                        <button onClick={this.createNewPost}>new post</button>
+                        <NavLink to="/forum/new">New Post</NavLink>
                     </div>
                     <div className="forum-posts">
                     { this.state.loading && <img className="loading-icon" src={loadingIcon} />}
