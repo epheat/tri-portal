@@ -12,11 +12,16 @@
 
         .actions {
             flex-basis: 50px;
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
 
-            
+            transition: flex-basis 0.2s;
+
+            @media screen and (max-width: $break-small) {
+                flex-basis: 35px;
+            }
         }
     }
 
