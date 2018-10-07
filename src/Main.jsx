@@ -48,7 +48,8 @@ export default class Main extends Component {
                 { this.props.authState == 'signedIn' ?
                     (<BrowserRouter>
                         <div>
-                            <Navbar fixed={false} user={this.props.authData} signOut={this.signOut} />                            {/* a Switch will render exactly 1 of its child routes based on current url */}
+                            <Navbar fixed={false} user={this.props.authData} signOut={this.signOut} />
+                            {/* a Switch will render exactly 1 of its child routes based on current url */}
                             <Switch>
                                 <Route exact path="/" component={Home} />
                                 <Route exact path="/" component={Home} />

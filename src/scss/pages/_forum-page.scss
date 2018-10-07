@@ -1,6 +1,14 @@
 .forum-page {
     margin: 0px 10px;
 
+    .forum-search-bar {
+        margin-bottom: 10px;
+
+        .tri-search-bar-container {
+            margin-bottom: 10px;
+        }
+    }
+
     .forum-posts {
         border-radius: 5px;
         background-color: $light-offwhite;
