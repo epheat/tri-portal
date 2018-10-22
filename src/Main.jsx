@@ -16,6 +16,7 @@ import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 
 import Navbar from './components/Navbar';
+import ForumPostView from './pages/ForumPostView';
 
 export default class Main extends Component {
 
@@ -57,6 +58,7 @@ export default class Main extends Component {
                                 <Route exact path="/members" component={MembersPage} />
                                 <Route exact path="/forum" component={ForumPage} />
                                 <Route exact path="/forum/new" component={ForumNewPost} />
+                                <Route exact path="/forum/:post_id" component={ForumPostView} />
                             </Switch>
                         </div>
                     </BrowserRouter>) : null

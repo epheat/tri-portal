@@ -1,15 +1,20 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import BrotherCard from '../components/BrotherCard';
 
 class MembersPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            memberList: null,
+            memberList: [],
         }
 
         this.getMemberList = this.getMemberList.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({ memberList: this.getMemberList() });
     }
 
     getMemberList() {
@@ -17,8 +22,35 @@ class MembersPage extends React.Component {
         // for now, I'll return an array of dummy data
         return [
             {
-
-            }
+                id: 1,
+                name: "Evan Heaton",
+                role: "admin",
+                pledgeClass: "Fall '14",
+            },
+            {
+                id: 2,
+                name: "Evan Heaton",
+                role: "admin",
+                pledgeClass: "Fall '14",
+            },
+            {
+                id: 3,
+                name: "Evan Heaton",
+                role: "admin",
+                pledgeClass: "Fall '14",
+            },
+            {
+                id: 4,
+                name: "Evan Heaton",
+                role: "admin",
+                pledgeClass: "Fall '14",
+            },
+            {
+                id: 5,
+                name: "Evan Heaton",
+                role: "admin",
+                pledgeClass: "Fall '14",
+            },
         ]
     }
 
@@ -39,6 +71,16 @@ class MembersPage extends React.Component {
                         search bar
                     </div>
 
+                    <div className="brothers-list">
+                        {
+                            this.state.memberList.map( brother => 
+                                <BrotherCard
+                                    key={ brother.id }
+                                    { ...brother }
+                                />   
+                            )
+                        }
+                    </div>
                 </div>
             </CSSTransitionGroup>
         )

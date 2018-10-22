@@ -26,7 +26,7 @@ const Navbar = ({ fixed, user, signOut }) => {
             <div className="row-actions">
                 <div className="link-button" onClick={signOut}>Sign Out</div>
                 <div className="greeting">
-                    Hello, {user.username}! 
+                    Hello, { user && user.username }! 
                 </div>
             </div>
         </div>

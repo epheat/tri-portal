@@ -19,6 +19,7 @@ class ForumPage extends React.Component {
             postList: [],
             filteredList: [],
             searchTerm: "",
+            error: null,
         }
 
         this.getPostList = this.getPostList.bind(this);
@@ -33,11 +34,12 @@ class ForumPage extends React.Component {
 
     getPostList() {
         API.get('triapi', '/posts').then( response => {
-            this.setState({ loading: false, postList: response });
+            this.setState({ loading: false, postList: response, error: null });
             this.computeFilteredList();
         }).catch( err => {
             console.log(err);
-        })
+            this.setState({ loading: false, error: err.message });
+        });
     }
 
     createNewPost() {
@@ -89,6 +91,7 @@ class ForumPage extends React.Component {
                     </div>
                     <div className="forum-posts">
                     { this.state.loading && <img className="loading-icon" src={loadingIcon} />}
+                    { this.state.error && <p className="error">{ this.state.error }</p>}
                     {
                         // for each post, in the postList, create a ForumPost component.
                         // each child in a .map() should have a unique 'key' property
@@ -96,7 +99,7 @@ class ForumPage extends React.Component {
                             <ForumPost key={post.post_id} post={post}></ForumPost>
                         )
                     }
-                    { (!this.state.loading && this.state.filteredList.length == 0) && <span>No posts :(</span> }
+                    { (!this.state.loading && !this.state.error && this.state.filteredList.length == 0) && <span>No posts :(</span> }
                     </div>
                 </div>
             </CSSTransitionGroup>

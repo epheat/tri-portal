@@ -1,5 +1,7 @@
 import React from 'react';
 import UpDownVote from './actions/UpDownVote';
+import { NavLink } from 'react-router-dom';
+
 // stateful react component to display a forum post in list view
 // todo: click on a forum post to redirect to the post page, to view comments, etc.
 class ForumPost extends React.Component {
@@ -52,7 +54,9 @@ class ForumPost extends React.Component {
                         />
                     </div>
                     <div className="text">
-                        <h2 className="title">{ this.props.post.title }</h2>
+                        <NavLink to={"/forum/" + this.props.post.post_id}>
+                            <h2 className="title">{ this.props.post.title }</h2>
+                        </NavLink>
                         <div className="author">{ this.props.post.author_username }</div>
                         <p className="content">{ this.props.post.content }</p>
                     </div>
