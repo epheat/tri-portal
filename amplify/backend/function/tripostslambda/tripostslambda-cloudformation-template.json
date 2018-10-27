@@ -27,7 +27,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "triportal-20180923204247-deployment",
-					"S3Key": "amplify-builds/tripostslambda-1538879796-latest-build.zip"
+					"S3Key": "amplify-builds/tripostslambda-1540683040-latest-build.zip"
 				}
 			}
 		},
@@ -105,6 +105,15 @@
 							"Resource": [
 								{
 									"Ref": "storagepostsdynamoArn"
+								}
+							]
+						},
+						{
+							"Effect": "Allow",
+							"Action": "cognito-idp:ListUsers",
+							"Resource": [
+								{
+									"Fn::ImportValue": "UserPoolArn"
 								}
 							]
 						}

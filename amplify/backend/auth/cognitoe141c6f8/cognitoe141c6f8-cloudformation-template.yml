@@ -377,6 +377,10 @@ Outputs :
     Description: The user pool app client id
   AppClientSecret:
     Value: !GetAtt UserPoolClientInputs.appSecret
+  UserPoolArn:
+    Value: !GetAtt UserPool.Arn
+    Description: Arn for user pool
+    Export: { Name: UserPoolArn }
   
    
    

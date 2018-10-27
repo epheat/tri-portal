@@ -6,10 +6,15 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 const AWS = require('aws-sdk')
+const cognito = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'})
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
 var express = require('express')
 const uuidv4 = require('uuid/v4');
+const dotenv = require('dotenv');
+dotenv.load();
+
+const auth = require('./auth/authMiddleware.js');
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -17,7 +22,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 let tableName = "triposts";
 
-const userIdPresent = false; // TODO: update in case is required to use that definition
+const userIdPresent = true; // TODO: update in case is required to use that definition
 const partitionKeyName = "post_id";
 const partitionKeyType = "S";
 const sortKeyName = "";
@@ -38,6 +43,9 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   next()
 });
+
+// get user attributes for user making this request, and attach them to req
+app.use(auth.getUserAttributes);
 
 // convert url string param to expected Type
 const convertUrlType = (param, type) => {
@@ -61,6 +69,11 @@ app.get(path, (req, res) => {
     if (err) {
       res.json({error: 'Could not scan triposts table: ' + err});
     } else {
+      // data.Items.forEach( item => {
+      //   let cognitoParams = {
+          
+      //   }
+      // });
       res.json(data.Items);
     }
   })
@@ -76,14 +89,10 @@ app.get(path + hashKeyPath, function(req, res) {
     ComparisonOperator: 'EQ'
   }
   
-  if (userIdPresent && req.apiGateway) {
-    condition[partitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH ];
-  } else {
-    try {
-      condition[partitionKeyName]['AttributeValueList'] = [ convertUrlType(req.params[partitionKeyName], partitionKeyType) ];
-    } catch(err) {
-      res.json({error: 'Wrong column type ' + err});
-    }
+  try {
+    condition[partitionKeyName]['AttributeValueList'] = [ convertUrlType(req.params[partitionKeyName], partitionKeyType) ];
+  } catch(err) {
+    res.json({error: 'Wrong column type ' + err});
   }
 
   let queryParams = {
@@ -142,53 +151,26 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
   });
 });
 
-
-/************************************
-* HTTP put method for insert object *
-*************************************/
-
-app.put(path, function(req, res) {
-  
-  if (userIdPresent) {
-    req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  }
-
-  let postId = uuidv4();
-
-  let putItemParams = {
-    TableName: tableName,
-    Item: { ...req.body, post_id: postId }
-  }
-  dynamodb.put(putItemParams, (err, data) => {
-    if(err) {
-      res.json({error: err, url: req.url, body: req.body});
-    } else{
-      res.json({success: 'put call succeed!', url: req.url, postId: postId, data: data});
-    }
-  });
-});
-
 /************************************
 * HTTP post method for insert object *
 *************************************/
-
 app.post(path, function(req, res) {
-  
-  if (userIdPresent) {
-    req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  }
+  let author = req.user.Username;
 
+  // generate a post_id
   let postId = uuidv4();
-
   let putItemParams = {
     TableName: tableName,
-    Item: { ...req.body, post_id: postId }
+    // add all values from the post body to the item
+    // add post_id and the retrieved username as author
+    Item: { ...req.body, post_id: postId, author_username: author }
   }
+  // put the post in dynamoDB
   dynamodb.put(putItemParams, (err, data) => {
     if(err) {
       res.json({error: err, url: req.url, body: req.body});
-    } else{
-      res.json({success: 'post call succeed!', url: req.url, postId: postId, data: data})
+    } else {
+      res.json({success: 'put call succeed!', url: req.url, postId: postId, data: data});
     }
   });
 });
