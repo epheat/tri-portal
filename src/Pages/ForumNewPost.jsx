@@ -1,6 +1,7 @@
 import React from 'react';
 import FormInput from '../components/FormInput';
 import { API } from 'aws-amplify';
+import TriButton from '../components/TriButton';
 
 class ForumNewPost extends React.Component {
     // https://www.codementor.io/blizzerand/building-forms-using-react-everything-you-need-to-know-iz3eyoq4y
@@ -59,7 +60,16 @@ class ForumNewPost extends React.Component {
                         callback={this.updateContent}
                     />
                 </div>
-                <button onClick={this.submitNewPost}>Submit post</button>
+                <TriButton
+                    text="Submit post"
+                    type="success"
+                    onClick={this.submitNewPost}
+                />
+                <TriButton
+                    to="/forum"
+                    text="Cancel"
+                    type="danger"
+                />
             </div>
         );
     }

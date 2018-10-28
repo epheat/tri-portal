@@ -1,0 +1,33 @@
+.tri-button-container {
+    display: inline-block;
+
+    & + .tri-button-container {
+        margin-left: 10px;
+    }
+}
+
+.tri-button-link {
+    text-decoration: none;
+}
+
+.tri-button {
+    color: black;
+    font-family: sans-serif;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+
+    &.success {
+        background-color: $button-success;
+    }
+    &.info {
+        background-color: $button-info;
+    }
+    &.warn {
+        background-color: $button-warn;
+    }
+    &.danger {
+        background-color: $button-danger;
+        color: white;
+    }
+}

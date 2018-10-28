@@ -9,6 +9,7 @@ import Comment from '../components/Comment';
 import evanIcon from '../assets/images/icon.jpg';
 import ForumPost from '../components/ForumPost';
 import SearchBar from '../components/SearchBar';
+import TriButton from '../components/TriButton';
 
 class ForumPage extends React.Component {
 
@@ -81,8 +82,14 @@ class ForumPage extends React.Component {
             >
                 <div className="forum-page">
                 <h1>Discussions/Posts</h1>
+                    <div className="forum-actions">
+                        <TriButton
+                            to="/forum/new"
+                            text="New Post"
+                            type="success"
+                        />
+                    </div>
                     <div className="forum-search-bar">
-                        <NavLink to="/forum/new">New Post</NavLink>
                         <SearchBar
                             value={this.state.searchTerm}
                             onChange={this.updateSearchTerm}

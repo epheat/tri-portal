@@ -21,6 +21,11 @@ $shadow-basic: 2px 2px 3px rgba(50, 50, 50, 0.7);
 $downvote-blue: #6f79d8;
 $upvote-green: #65ca68;
 
+// TriButton colors
+$button-success: rgb(123, 212, 130);
+$button-info: rgb(133, 211, 221);
+$button-warn: rgb(231, 127, 57);
+$button-danger: rgb(214, 77, 77);
 
 // should probably move these to another file
 $break-small: 480px;
