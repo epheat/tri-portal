@@ -47,29 +47,31 @@ class ForumNewPost extends React.Component {
     render() {
         return (
             <div className="forum-new-post-page">
-                <h1>Create a New Post:</h1>
-                <div className="form-container">
-                    <FormInput
-                        fieldName="Title"
-                        value={this.state.newPost.title}
-                        callback={this.updateTitle}
+                <div className="page-content">
+                    <h1>Create a New Post:</h1>
+                    <div className="form-container">
+                        <FormInput
+                            fieldName="Title"
+                            value={this.state.newPost.title}
+                            callback={this.updateTitle}
+                        />
+                        <FormInput
+                            fieldName="Content"
+                            value={this.state.newPost.content}
+                            callback={this.updateContent}
+                        />
+                    </div>
+                    <TriButton
+                        text="Submit post"
+                        type="success"
+                        onClick={this.submitNewPost}
                     />
-                    <FormInput
-                        fieldName="Content"
-                        value={this.state.newPost.content}
-                        callback={this.updateContent}
+                    <TriButton
+                        to="/forum"
+                        text="Cancel"
+                        type="danger"
                     />
                 </div>
-                <TriButton
-                    text="Submit post"
-                    type="success"
-                    onClick={this.submitNewPost}
-                />
-                <TriButton
-                    to="/forum"
-                    text="Cancel"
-                    type="danger"
-                />
             </div>
         );
     }

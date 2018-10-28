@@ -62,7 +62,7 @@ export default class Home extends Component {
                 transitionLeave={true}
             >
                 <div className="home-page">
-                    <div className="content">
+                    <div className="page-content">
                         <h1>Triangle Portal</h1>
                         <p>
                             Welcome to the Triangle Portal! This is your one-stop shop for the latest triangle events, announcements, and discussions.

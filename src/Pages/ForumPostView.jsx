@@ -22,29 +22,31 @@ class ForumPostView extends React.Component {
     render() {
         return (
             <div className="forum-post-view">
-                {
-                    this.state.loading ? <div>loading</div>
-                    :
-                    (
-                        <div>
-                            <h1>{ this.state.post.title }</h1>
-                            <h3>{ this.state.post.author_username }</h3>
-                            <p>{ this.state.post.content }</p>
-                        </div>
-                    )
-                }
-                <div className="comments-container">
-                    <textarea />
+                <div className="page-content">
                     {
-                        !this.state.loading && 
-                        this.state.post.comments &&
-                        this.state.post.comments.map( comment => 
-                            (<Comment
-                                key={comment.comment_id}
-                                comment={comment}
-                            />)
+                        this.state.loading ? <div>loading</div>
+                        :
+                        (
+                            <div>
+                                <h1>{ this.state.post.title }</h1>
+                                <h3>{ this.state.post.author_username }</h3>
+                                <p>{ this.state.post.content }</p>
+                            </div>
                         )
                     }
+                    <div className="comments-container">
+                        <textarea />
+                        {
+                            !this.state.loading && 
+                            this.state.post.comments &&
+                            this.state.post.comments.map( comment => 
+                                (<Comment
+                                    key={comment.comment_id}
+                                    comment={comment}
+                                />)
+                            )
+                        }
+                    </div>
                 </div>
             </div>
         );

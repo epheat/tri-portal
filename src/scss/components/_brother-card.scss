@@ -1,14 +1,5 @@
 .brother-card {
 
-    flex-basis: 22%;
-
-    @media screen and (max-width: $break-medium) {
-        flex-basis: 31%;
-    }
-    @media screen and (max-width: $break-small) {
-        flex-basis: 48%;
-    }
-
     .brother-image {
         width: 100%;
 

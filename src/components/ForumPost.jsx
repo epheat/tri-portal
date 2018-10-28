@@ -58,7 +58,7 @@ class ForumPost extends React.Component {
                             <h2 className="title">{ this.props.post.title }</h2>
                         </NavLink>
                         <div className="author">{ this.props.post.author_username }</div>
-                        <p className="content">{ this.props.post.content }</p>
+                        <p className="post-content">{ this.props.post.content }</p>
                     </div>
                 </div>
             </div>

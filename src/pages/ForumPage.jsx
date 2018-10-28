@@ -81,32 +81,34 @@ class ForumPage extends React.Component {
                 transitionLeave={true}
             >
                 <div className="forum-page">
-                <h1>Discussions/Posts</h1>
-                    <div className="forum-actions">
-                        <TriButton
-                            to="/forum/new"
-                            text="New Post"
-                            type="success"
-                        />
-                    </div>
-                    <div className="forum-search-bar">
-                        <SearchBar
-                            value={this.state.searchTerm}
-                            onChange={this.updateSearchTerm}
-                            placeholder="Search"
-                        />
-                    </div>
-                    <div className="forum-posts">
-                    { this.state.loading && <img className="loading-icon" src={loadingIcon} />}
-                    { this.state.error && <p className="error">{ this.state.error }</p>}
-                    {
-                        // for each post, in the postList, create a ForumPost component.
-                        // each child in a .map() should have a unique 'key' property
-                        this.state.filteredList.map( post => 
-                            <ForumPost key={post.post_id} post={post}></ForumPost>
-                        )
-                    }
-                    { (!this.state.loading && !this.state.error && this.state.filteredList.length == 0) && <span>No posts :(</span> }
+                    <div className="page-content">
+                        <h1>Discussions/Posts</h1>
+                        <div className="forum-actions">
+                            <TriButton
+                                to="/forum/new"
+                                text="New Post"
+                                type="success"
+                            />
+                        </div>
+                        <div className="forum-search-bar">
+                            <SearchBar
+                                value={this.state.searchTerm}
+                                onChange={this.updateSearchTerm}
+                                placeholder="Search"
+                            />
+                        </div>
+                        <div className="forum-posts">
+                        { this.state.loading && <img className="loading-icon" src={loadingIcon} />}
+                        { this.state.error && <p className="error">{ this.state.error }</p>}
+                        {
+                            // for each post, in the postList, create a ForumPost component.
+                            // each child in a .map() should have a unique 'key' property
+                            this.state.filteredList.map( post => 
+                                <ForumPost key={post.post_id} post={post}></ForumPost>
+                            )
+                        }
+                        { (!this.state.loading && !this.state.error && this.state.filteredList.length == 0) && <span>No posts :(</span> }
+                        </div>
                     </div>
                 </div>
             </CSSTransitionGroup>

@@ -66,20 +66,22 @@ class MembersPage extends React.Component {
                 transitionLeave={true}
             >
                 <div className="members-page">
-                    <h1>The Chapter</h1>
-                    <div className="member-search-bar">
-                        search bar
-                    </div>
+                    <div className="page-content">
+                        <h1>The Chapter</h1>
+                        <div className="member-search-bar">
+                            search bar
+                        </div>
 
-                    <div className="brothers-list">
-                        {
-                            this.state.memberList.map( brother => 
-                                <BrotherCard
-                                    key={ brother.id }
-                                    { ...brother }
-                                />   
-                            )
-                        }
+                        <div className="brothers-list">
+                            {
+                                this.state.memberList.map( brother => 
+                                    <BrotherCard
+                                        key={ brother.id }
+                                        { ...brother }
+                                    />   
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
             </CSSTransitionGroup>

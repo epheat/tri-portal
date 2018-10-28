@@ -6,3 +6,13 @@ body {
     // override padding 15px on left and right, default from Authenticator component
     padding: 0px !important;
 }
+
+.page-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+
+    @media screen and (max-width: $break-small) {
+        padding: 10px 0px;
+    }
+}
