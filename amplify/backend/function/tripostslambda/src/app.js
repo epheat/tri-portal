@@ -10,6 +10,7 @@ const cognito = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
 var express = require('express')
+const moment = require('moment');
 const uuidv4 = require('uuid/v4');
 const dotenv = require('dotenv');
 dotenv.load();
@@ -156,14 +157,15 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
 *************************************/
 app.post(path, function(req, res) {
   let author = req.user.Username;
-
+  // get the current time
+  let timestamp = moment().format();
   // generate a post_id
   let postId = uuidv4();
   let putItemParams = {
     TableName: tableName,
     // add all values from the post body to the item
-    // add post_id and the retrieved username as author
-    Item: { ...req.body, post_id: postId, author_username: author }
+    // add post_id, timestamp, and the retrieved author username
+    Item: { ...req.body, post_id: postId, timestamp: timestamp, author_username: author }
   }
   // put the post in dynamoDB
   dynamodb.put(putItemParams, (err, data) => {

@@ -9,6 +9,8 @@ class ForumNewPost extends React.Component {
     constructor() {
         super();
         this.state = {
+            loading: false,
+            response: "",
             newPost: {
                 title: "",
                 content: "",
@@ -35,12 +37,15 @@ class ForumNewPost extends React.Component {
     }
 
     submitNewPost() {
+        this.setState({ loading: true });
         API.post('triapi', '/posts', { body: this.state.newPost }).then( response => {
             console.log(response);
+            this.setState({ loading: false, response: response.success })
             // return the generated post_id?
             // navigate to forum page, forumPost page?
         }).catch( err => {
             console.log(err);
+            this.setState({ loading: false, response: err.message })
         })
     }
 
@@ -71,6 +76,14 @@ class ForumNewPost extends React.Component {
                         text="Cancel"
                         type="danger"
                     />
+                    { 
+                        this.state.loading &&
+                        <div className="loading">loading...</div>
+                    }
+                    {
+                        this.state.response &&
+                        <div className="api-response">{ this.state.response }</div>
+                    }
                 </div>
             </div>
         );
