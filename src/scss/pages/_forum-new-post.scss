@@ -3,7 +3,9 @@
         
     .form-container {
         background-color: $light-offwhite;
-        padding: 5px;
+        // border: 1px solid $light-grey;
+        border-radius: 5px;
+        padding: 10px;
         margin-bottom: 10px;
     }
 }

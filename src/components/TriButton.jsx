@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom';
 //   text - what is displayed on the button
 //   type - [success, info, warn, danger] - what color / style the button should have
 //   onClick - callback function to be executed on click. Be sure to bind this in the parent component
-const TriButton = ({ text, type, onClick, to }) => {
+//   to - if this prop is provided, the button renders with a Link wrapping it
+//   icon - icon displayed in the button
+const TriButton = ({ text, type, onClick, to, icon }) => {
 
     const button = (
         <div
@@ -18,6 +20,7 @@ const TriButton = ({ text, type, onClick, to }) => {
                 {danger: type == 'danger'})}
             onClick={onClick}
         >
+            { icon && <i className="material-icons">{ icon }</i>}
             { text }
         </div>
     )

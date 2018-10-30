@@ -2,6 +2,8 @@ import React from 'react';
 import FormInput from '../components/FormInput';
 import { API } from 'aws-amplify';
 import TriButton from '../components/TriButton';
+import MultiSelector from '../components/selector/MultiSelector';
+import UpDownVote from '../components/actions/UpDownVote';
 
 class ForumNewPost extends React.Component {
     // https://www.codementor.io/blizzerand/building-forms-using-react-everything-you-need-to-know-iz3eyoq4y
@@ -64,7 +66,15 @@ class ForumNewPost extends React.Component {
                             fieldName="Content"
                             value={this.state.newPost.content}
                             callback={this.updateContent}
+                            textarea={true}
                         />
+                        <div className="tri-form-label" style={{marginTop: '5px'}}>Action</div>
+                        <MultiSelector>
+                            <UpDownVote />
+                            <UpDownVote />
+                            <UpDownVote />
+                            <UpDownVote />
+                        </MultiSelector>
                     </div>
                     <TriButton
                         text="Submit post"
@@ -76,6 +86,7 @@ class ForumNewPost extends React.Component {
                         text="Cancel"
                         type="danger"
                     />
+
                     { 
                         this.state.loading &&
                         <div className="loading">loading...</div>

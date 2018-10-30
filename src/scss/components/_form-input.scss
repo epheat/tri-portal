@@ -1,14 +1,17 @@
 .tri-form-input-container {
+
+    position: relative;
+    z-index: 1;
+
     & + .tri-form-input-container {
         margin-top: 10px;
     }
 
-    display: flex;
-
     .tri-form-label {
-        flex-basis: 80px;
+
     }
     .tri-form-input {
-        flex-grow: 1;
+        width: 100%;
+        max-width: 100%;
     }
 }

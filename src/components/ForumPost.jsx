@@ -16,7 +16,6 @@ class ForumPost extends React.Component {
 
     componentDidMount() {
         // todo: API call to get user's action status on this ForumPost
-        console.log(moment().format());
     }
 
     submitAction() {
@@ -47,7 +46,7 @@ class ForumPost extends React.Component {
             <div className="forum-post">
                 <div className="actions-and-text">
                     <div className="actions">
-                        {/* Todo: use different action based on post type */}
+                        {/* TODO: use different action based on post type */}
                         <UpDownVote
                             onUpVote={this.onUpVote}
                             onDownVote={this.onDownVote}
@@ -60,9 +59,9 @@ class ForumPost extends React.Component {
                             <h2 className="title">{ this.props.post.title }</h2>
                         </NavLink>
                         <div className="subtitle">
-                            <span className="timestamp">{ moment(this.props.post.timestamp).format('MM ddd, hh:mm:ss a') }</span>
-                            &nbsp;-&nbsp;
                             <span className="author">{ this.props.post.author_username }</span>
+                            &nbsp;-&nbsp;
+                            <span className="timestamp">{ moment(this.props.post.timestamp).format('MM ddd, hh:mm:ss a') }</span>
                         </div>
                         <p className="post-content">{ this.props.post.content }</p>
                     </div>

@@ -1,0 +1,13 @@
+.selector-option {
+    flex-grow: 1;
+
+    &.selected {
+        transition: 0.4s;
+        background-color: rgb(255, 255, 173);
+    }
+}
+
+.multi-selector {
+    display: flex;
+    justify-content: space-around;
+}

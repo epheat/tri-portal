@@ -11,7 +11,8 @@ const SearchBar = ({ value, onChange, placeholder }) => {
                 placeholder={placeholder}
                 type="text"
             />
-            <span className="focus-bg"></span>
+            <span className="focus-bg" />
+            <span className="bg" />
         </div>
     );
 }

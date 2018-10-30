@@ -1,8 +1,8 @@
 import React from 'react';
 
-import profile from '../assets/images/icon.jpg';
+import profile from '../assets/images/crest.png';
 
-const BrotherCard = ({ name, image, role, pledgeClass }) => {
+const BrotherCard = ({ name, image, role, pledgeClass, large, side }) => {
     return (
         <div className="brother-card">
             <img className="brother-image" src={profile} />
