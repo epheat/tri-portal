@@ -43,8 +43,8 @@ class ForumNewPost extends React.Component {
         API.post('triapi', '/posts', { body: this.state.newPost }).then( response => {
             console.log(response);
             this.setState({ loading: false, response: response.success })
-            // return the generated post_id?
-            // navigate to forum page, forumPost page?
+            // navigate to the post page for the created post
+            this.props.history.push('/forum/' + response.postId);
         }).catch( err => {
             console.log(err);
             this.setState({ loading: false, response: err.message })
