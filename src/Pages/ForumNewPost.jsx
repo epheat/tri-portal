@@ -4,6 +4,7 @@ import { API } from 'aws-amplify';
 import TriButton from '../components/TriButton';
 import MultiSelector from '../components/selector/MultiSelector';
 import UpDownVote from '../components/actions/UpDownVote';
+import AttendanceVote from '../components/actions/AttendanceVote';
 
 class ForumNewPost extends React.Component {
     // https://www.codementor.io/blizzerand/building-forms-using-react-everything-you-need-to-know-iz3eyoq4y
@@ -71,7 +72,7 @@ class ForumNewPost extends React.Component {
                         <div className="tri-form-label" style={{marginTop: '5px'}}>Action</div>
                         <MultiSelector>
                             <UpDownVote />
-                            <UpDownVote />
+                            <AttendanceVote />
                             <UpDownVote />
                             <UpDownVote />
                         </MultiSelector>

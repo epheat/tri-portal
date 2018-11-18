@@ -7,6 +7,14 @@
                 "private": true,
                 "auth": "rw"
             }
+        },
+        {
+            "name": "/comments",
+            "lambdaFunction": "tricommentslambda",
+            "privacy": {
+                "private": true,
+                "auth": "rw"
+            }
         }
     ],
     "resourceName": "triapi",
@@ -14,10 +22,13 @@
     "functionArns": [
         {
             "lambdaFunction": "tripostslambda"
+        },
+        {
+            "lambdaFunction": "tricommentslambda"
         }
     ],
     "privacy": {
-        "auth": 1,
+        "auth": 2,
         "unauth": 0,
         "authRoleName": "triportal-20180923204247-authRole",
         "unAuthRoleName": "triportal-20180923204247-unauthRole"
@@ -30,6 +41,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "tricommentslambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
-    ]
+    ],
+    "uuid": "a4c7d508"
 }

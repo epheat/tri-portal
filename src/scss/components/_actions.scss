@@ -1,17 +1,29 @@
 // ACTIONS
 .action-container {
-    
-}
-
-
-// up-down-vote
-.up-down-vote-container {
     height: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
 
+// single option - attendance
+.attendance-vote-container {
+    .dot {
+        background-color: $light-grey;
+        height: 20px;
+        width: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &.selected {
+            background-color: $attendance-green;
+        }
+    }
+}
+
+// up-down-vote
+.up-down-vote-container {
     .upvote {
         width: 0px;
         height: 0px;
@@ -45,5 +57,3 @@
 }
 
 // poll - 4 options
-
-// single option - attendance?

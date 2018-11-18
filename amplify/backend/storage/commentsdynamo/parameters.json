@@ -1,0 +1,7 @@
+{
+    "tableName": "commentsdynamo",
+    "partitionKeyName": "post_id",
+    "partitionKeyType": "S",
+    "sortKeyName": "comment_id",
+    "sortKeyType": "S"
+}
