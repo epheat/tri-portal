@@ -61,7 +61,7 @@ class ForumPost extends React.Component {
                         <div className="subtitle">
                             <span className="author">{ this.props.post.author_username }</span>
                             &nbsp;-&nbsp;
-                            <span className="timestamp">{ moment(this.props.post.timestamp).format('MM ddd, hh:mm:ss a') }</span>
+                            <span className="timestamp">{ moment(this.props.post.timestamp).format('MM/DD, hh:mm a') }</span>
                         </div>
                         <p className="post-content">{ this.props.post.content }</p>
                     </div>

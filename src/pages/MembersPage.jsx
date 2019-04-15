@@ -1,6 +1,7 @@
 import React from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import BrotherCard from '../components/BrotherCard';
+import MemberGrid from '../components/MemberGrid';
+import MemberList from '../components/MemberList';
 
 class MembersPage extends React.Component {
 
@@ -8,13 +9,14 @@ class MembersPage extends React.Component {
         super(props);
         this.state = {
             memberList: [],
+            ecMembers: [],
         }
 
         this.getMemberList = this.getMemberList.bind(this);
     }
 
     componentDidMount() {
-        this.setState({ memberList: this.getMemberList() });
+        this.setState({ memberList: this.getMemberList(), ecMembers: this.getMemberList() });
     }
 
     getMemberList() {
@@ -29,26 +31,26 @@ class MembersPage extends React.Component {
             },
             {
                 id: 2,
-                name: "Evan Heaton",
+                name: "Thomas Morgan",
                 role: "admin",
                 pledgeClass: "Fall '14",
             },
             {
                 id: 3,
-                name: "Evan Heaton",
+                name: "David Cottrell",
                 role: "admin",
                 pledgeClass: "Fall '14",
             },
             {
                 id: 4,
-                name: "Evan Heaton",
+                name: "Zach Marshall",
                 role: "admin",
                 pledgeClass: "Fall '14",
             },
             {
                 id: 5,
-                name: "Evan Heaton",
-                role: "admin",
+                name: "Andy Conway",
+                role: "brother",
                 pledgeClass: "Fall '14",
             },
         ]
@@ -71,17 +73,12 @@ class MembersPage extends React.Component {
                         <div className="member-search-bar">
                             search bar
                         </div>
-
-                        <div className="brothers-list">
-                            {
-                                this.state.memberList.map( brother => 
-                                    <BrotherCard
-                                        key={ brother.id }
-                                        { ...brother }
-                                    />   
-                                )
-                            }
-                        </div>
+                        <MemberList 
+                            members={this.state.ecMembers}
+                        />
+                        <MemberGrid
+                            members={this.state.memberList}
+                        />
                     </div>
                 </div>
             </CSSTransitionGroup>

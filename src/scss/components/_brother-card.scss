@@ -2,6 +2,32 @@
 
     .brother-image {
         width: 100%;
+    }
 
+    h3, h4, p {
+        margin: 2px 0px 2px 0px;
+    }
+
+    // for ec brother cards
+    &.left, &.right {
+        display: grid;
+        .brother-image {
+            grid-area: image;
+        }
+        .card-text {
+            grid-area: text;
+            align-self: center;
+            margin: 0px 5px;
+        }
+    }
+    &.left {
+        grid-template-columns: 200px 1fr;
+        grid-template-areas: "image text";
+        text-align: left;
+    }
+    &.right {
+        grid-template-columns: 1fr 200px;
+        grid-template-areas: "text image";
+        text-align: right;
     }
 }

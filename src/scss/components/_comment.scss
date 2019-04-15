@@ -20,6 +20,7 @@
 
 .tri-comment-container {
     padding: 12px;
+    margin-bottom: 5px;
     background-color: $offwhite;
 
     .light {
@@ -28,6 +29,9 @@
         font-size: 0.9em;
     }
 
+    .comment-body p {
+        margin: 4px 0px;
+    }
     
     .comment-actions {
         margin-bottom: 5px;

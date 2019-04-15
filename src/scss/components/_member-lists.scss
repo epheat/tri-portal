@@ -1,0 +1,17 @@
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 30px;
+
+    @media screen and (max-width: $break-medium) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    @media screen and (max-width: $break-small) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 10px;
+    }
+}
+
+.member-list {
+    
+}

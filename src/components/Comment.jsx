@@ -1,6 +1,14 @@
 import React from 'react';
 import moment from 'moment';
 
+/**
+ * props:
+ *  account: {
+ *      icon: url_for_icon
+ *      name: username
+ *      role: user_role
+ *  }
+ */
 const AccountDetail = ({ account }) => {
     return (
         <div className="tri-account-detail">
@@ -13,6 +21,20 @@ const AccountDetail = ({ account }) => {
     );
 };
 
+
+/**
+ * props:
+ *  comment: {
+ *      account: AccountDetail
+ *      timePosted: timestamp
+ *      content: comment_content
+ *      children: [
+ *          Comment,
+ *          ...
+ *      ]
+ *  }
+ * 
+ */
 class Comment extends React.Component {
 
     constructor(props) {
@@ -53,8 +75,8 @@ class Comment extends React.Component {
     render() {
         return (
             <div className="tri-comment-container">
-                <AccountDetail account={this.props.comment.account} timePosted={this.props.comment.timePosted}></AccountDetail>
-                <p className="light">{ this.props.comment.timePosted }</p>
+                <AccountDetail account={this.props.comment.account}></AccountDetail>
+                <p className="light">{ moment(this.props.comment.timePosted).format('MM/DD, hh:mm a') }</p>
                 <div className="comment-body">
                     <p>{ this.props.comment.content }</p>
                 </div>

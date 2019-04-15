@@ -1,4 +1,18 @@
 .forum-post-view {
-    margin: 10px 0px;
+    margin: 0px 0px 10px 0px;
 
+    .page-content {
+        background-color: $light-offwhite;
+    }
+
+    .comments-container {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: $lighter-offwhite;
+
+        .comments-actions {
+            margin: 10px 0px;
+        }
+    
+    }
 }
