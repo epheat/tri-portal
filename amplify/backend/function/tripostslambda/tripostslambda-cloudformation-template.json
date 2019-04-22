@@ -9,6 +9,9 @@
 		"storagepostsdynamoArn": {
 			"Type": "String",
 			"Default": "storagepostsdynamoArn"
+		},
+		"env": {
+			"Type": "String"
 		}
 	},
 	"Resources": {
@@ -16,7 +19,24 @@
 			"Type": "AWS::Lambda::Function",
 			"Properties": {
 				"Handler": "index.handler",
-				"FunctionName": "tripostslambda",
+				"FunctionName": {
+					"Fn::If": [
+						"ShouldNotCreateEnvResources",
+						"tripostslambda",
+						{
+							"Fn::Join": [
+								"",
+								[
+									"tripostslambda",
+									"-",
+									{
+										"Ref": "env"
+									}
+								]
+							]
+						}
+					]
+				},
 				"Role": {
 					"Fn::GetAtt": [
 						"LambdaExecutionRole",
@@ -27,14 +47,38 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "triportal-20180923204247-deployment",
-					"S3Key": "amplify-builds/tripostslambda-1540766972-latest-build.zip"
+					"S3Key": "amplify-builds/tripostslambda-1555911373-latest-build.zip"
+				},
+				"Environment": {
+					"Variables": {
+						"ENV": {
+							"Ref": "env"
+						}
+					}
 				}
 			}
 		},
 		"LambdaExecutionRole": {
 			"Type": "AWS::IAM::Role",
 			"Properties": {
-				"RoleName": "triportalLambdaRoleaf709ab2",
+				"RoleName": {
+					"Fn::If": [
+						"ShouldNotCreateEnvResources",
+						"triportalLambdaRoleaf709ab2",
+						{
+							"Fn::Join": [
+								"",
+								[
+									"triportalLambdaRoleaf709ab2",
+									"-",
+									{
+										"Ref": "env"
+									}
+								]
+							]
+						}
+					]
+				},
 				"AssumeRolePolicyDocument": {
 					"Version": "2012-10-17",
 					"Statement": [
@@ -140,6 +184,16 @@
 			"Value": {
 				"Ref": "AWS::Region"
 			}
+		}
+	},
+	"Conditions": {
+		"ShouldNotCreateEnvResources": {
+			"Fn::Equals": [
+				{
+					"Ref": "env"
+				},
+				"NONE"
+			]
 		}
 	}
 }

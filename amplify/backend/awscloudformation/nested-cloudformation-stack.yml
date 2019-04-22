@@ -83,6 +83,24 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/auth/cognitoe141c6f8-cloudformation-template.yml",
 				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"authRoleArn": {
+						"Fn::GetAtt": [
+							"AuthRole",
+							"Arn"
+						]
+					},
+					"unauthRoleArn": {
+						"Fn::GetAtt": [
+							"UnauthRole",
+							"Arn"
+						]
+					},
 					"identityPoolName": "cognitoe141c6f8_identitypool_e141c6f8",
 					"allowUnauthenticatedIdentities": false,
 					"thirdPartyAuth": false,
@@ -120,11 +138,10 @@
 					"userpoolClientSetAttributes": false,
 					"useDefault": "default",
 					"unAuthRoleName": "triportal-20180923204247-unauthRole",
-					"authRoleName": "triportal-20180923204247-authRole",
 					"unAuthRoleArn": "arn:aws:iam::854299661720:role/triportal-20180923204247-unauthRole",
-					"authRoleArn": "arn:aws:iam::854299661720:role/triportal-20180923204247-authRole",
 					"resourceName": "cognitoe141c6f8",
-					"authSelections": "identityPoolAndUserPool"
+					"authSelections": "identityPoolAndUserPool",
+					"env": "NONE"
 				}
 			}
 		},
@@ -135,7 +152,22 @@
 				"Parameters": {
 					"tableName": "triposts",
 					"partitionKeyName": "post_id",
-					"partitionKeyType": "S"
+					"partitionKeyType": "S",
+					"env": "NONE"
+				}
+			}
+		},
+		"storagecommentsdynamo": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/storage/commentsdynamo-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "commentsdynamo",
+					"partitionKeyName": "post_id",
+					"partitionKeyType": "S",
+					"sortKeyName": "comment_id",
+					"sortKeyType": "S",
+					"env": "NONE"
 				}
 			}
 		},
@@ -155,7 +187,29 @@
 							"storagepostsdynamo",
 							"Outputs.Arn"
 						]
-					}
+					},
+					"env": "NONE"
+				}
+			}
+		},
+		"functiontricommentslambda": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/function/tricommentslambda-cloudformation-template.json",
+				"Parameters": {
+					"storagecommentsdynamoName": {
+						"Fn::GetAtt": [
+							"storagecommentsdynamo",
+							"Outputs.Name"
+						]
+					},
+					"storagecommentsdynamoArn": {
+						"Fn::GetAtt": [
+							"storagecommentsdynamo",
+							"Outputs.Arn"
+						]
+					},
+					"env": "NONE"
 				}
 			}
 		},
@@ -164,6 +218,12 @@
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/api/triapi-cloudformation-template.json",
 				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
 					"functiontripostslambdaName": {
 						"Fn::GetAtt": [
 							"functiontripostslambda",
@@ -175,7 +235,20 @@
 							"functiontripostslambda",
 							"Outputs.Arn"
 						]
-					}
+					},
+					"functiontricommentslambdaName": {
+						"Fn::GetAtt": [
+							"functiontricommentslambda",
+							"Outputs.Name"
+						]
+					},
+					"functiontricommentslambdaArn": {
+						"Fn::GetAtt": [
+							"functiontricommentslambda",
+							"Outputs.Arn"
+						]
+					},
+					"env": "NONE"
 				}
 			}
 		},
@@ -183,7 +256,10 @@
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/triportal-20180923204247-deployment/amplify-cfn-templates/hosting/template.json",
-				"Parameters": {}
+				"Parameters": {
+					"bucketName": "triportal-20180923210204--hostingbucket",
+					"env": "NONE"
+				}
 			}
 		}
 	},

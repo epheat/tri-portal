@@ -9,6 +9,8 @@ const AWS = require('aws-sdk')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 var bodyParser = require('body-parser')
 var express = require('express')
+const moment = require('moment');
+const uuidv4 = require('uuid/v4');
 
 const auth = require('./auth/authMiddleware.js');
 
@@ -155,24 +157,30 @@ app.put(path, function(req, res) {
 });
 
 /************************************
-* HTTP post method for insert object *
+* HTTP post method for insert comment *
 *************************************/
 
 app.post(path, function(req, res) {
-  
-  if (userIdPresent) {
-    req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  }
+
+  let author = req.user.Username;
+  // get the current time
+  let timestamp = moment().format();
+  // generate a post_id
+  let commentId = uuidv4();
 
   let putItemParams = {
     TableName: tableName,
-    Item: req.body
+    // add all values from the post body to the item
+    // add comment_id, timestamp, and the retrieved author username
+    Item: { ...req.body, comment_id: commentId, timestamp: timestamp, author_username: author }
   }
+
+  // put the post in dynamoDB
   dynamodb.put(putItemParams, (err, data) => {
-    if(err) {
+    if (err) {
       res.json({error: err, url: req.url, body: req.body});
-    } else{
-      res.json({success: 'post call succeed!', url: req.url, data: data})
+    } else {
+      res.json({success: 'successfully submitted comment!', url: req.url, commentId: commentId, data: data});
     }
   });
 });

@@ -16,12 +16,14 @@ class ForumPostView extends React.Component {
             // go ahead and decouple them.
             post: null,
             comments: [],
+            error: "",
             loading: true,
-            commentInput: "",
+            commentsLoading: true,
+            commentInput: ""
         }
 
         this.updateComment = this.updateComment.bind(this);
-        this.submitComment = this.submitComment.bind(this);
+        this.submitTopLevelComment = this.submitTopLevelComment.bind(this);
         this.clearComment = this.clearComment.bind(this);
     }
 
@@ -34,6 +36,15 @@ class ForumPostView extends React.Component {
             console.log(err);
             this.setState({ loading: false, error: err.message });
         })
+
+        // ajax call to load comments for this post_id
+        API.get('triapi', '/comments/' + this.props.match.params.post_id).then( response => {
+            console.log(response);
+            this.setState({ commentsLoading: false });
+        }).catch( err => {
+            console.log(err);
+            this.setState({ loading: false, error: err.message });
+        })
     }
 
     updateComment(e) {
@@ -41,27 +52,36 @@ class ForumPostView extends React.Component {
         this.setState({ commentInput: comment });
     }
 
-    submitComment() {
+    submitTopLevelComment() {
         // TODO: API call to submit top level comment
         // TODO: confirmation for submit comment
         console.log("Submit comment.");
         let currentTime = moment.unix();
         let commentContent = this.state.commentInput;
-        let newComments = this.state.comments;
-        console.log(newComments);
-        newComments.splice(0, 0, {
-            comment_id: uuid.v4(),
-            account: {
-                icon: profile,
-                name: "epheat",
-                role: "admin"
-            },
-            timestamp: currentTime,
-            content: commentContent,
-            children: [],
-        })
+        let comment = { content: commentContent, top_level: true }
 
-        this.setState({ commentInput: "", comments: newComments });
+        API.post('triapi', '/comments', { body: comment }).then( response => {
+            console.log(response);
+            let comment_id = response.commentId;
+
+            let newComments = this.state.comments;
+            newComments.splice(0, 0, {
+                comment_id: comment_id,
+                account: {
+                    icon: profile,
+                    name: "epheat",
+                    role: "admin"
+                },
+                timestamp: currentTime,
+                content: commentContent,
+                children: [],
+            })
+    
+            this.setState({ commentInput: "", comments: newComments });
+        }).catch( err => {
+            console.log(err);
+            this.setState({ error: err.message });
+        })
     }
 
     clearComment() {
@@ -77,6 +97,7 @@ class ForumPostView extends React.Component {
         return (
             <div className="forum-post-view">
                 <div className="page-content">
+                    { this.state.error }
                     {
                         this.state.loading ? <div>loading</div>
                         :
@@ -100,7 +121,7 @@ class ForumPostView extends React.Component {
                             />
                             <div className="comments-actions">
                                 <TriButton
-                                    onClick={this.submitComment}
+                                    onClick={this.submitTopLevelComment}
                                     text="Post"
                                     type="success"
                                 />

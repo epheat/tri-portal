@@ -1,5 +1,5 @@
 {
-    "providers": {
+    "NONE": {
         "awscloudformation": {
             "AuthRoleName": "triportal-20180923204247-authRole",
             "UnauthRoleArn": "arn:aws:iam::854299661720:role/triportal-20180923204247-unauthRole",
